@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.cft.aml.seabattler.data.CellsRepository;
 import ru.cft.aml.seabattler.external.Enemy;
+import ru.cft.aml.seabattler.model.AttackResult;
+import ru.cft.aml.seabattler.model.Projectile;
 import ru.cft.aml.seabattler.service.AttackService;
 
 
@@ -23,6 +25,9 @@ public class AttackServiceImpl implements AttackService {
 
     @Override
     public void attackEnemy() {
-
+        Projectile p = new Projectile();
+        p.setX(0);
+        p.setY(0);
+        AttackResult res = this.enemy.fire(p);
     }
 }

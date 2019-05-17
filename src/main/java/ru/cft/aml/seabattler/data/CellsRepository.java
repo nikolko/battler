@@ -9,5 +9,10 @@ import java.util.Optional;
 
 @Repository
 public interface CellsRepository extends CrudRepository<Cell, Long> {
-    Optional<Cell> findByXAndY(Integer x, Integer y);
+    Optional<Cell> findByXAndYAndSelfIsTrue(Integer x, Integer y);
+
+    Integer countByDamagedIsFalse();
+
+    Integer countByDamagedIsFalseAndSelfIsTrue();
+
 }

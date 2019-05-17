@@ -36,7 +36,6 @@ public class BattlerControllerImpl implements BattlerController {
 
     @ExceptionHandler(Exception.class)
     public void handle(Exception e) {
-        e.printStackTrace();
         StringBuilder b = new StringBuilder();
         for (int i = 0; i < e.getStackTrace().length; i++) {
             b.append(e.getStackTrace()[i]).append("\n");
@@ -50,17 +49,27 @@ public class BattlerControllerImpl implements BattlerController {
     @Override
     @PostMapping("fire")
     public AttackResult fire(Projectile projectile) {
-        return null;
+        AttackResult r = this.cellsService.checkCell(projectile.getX(), projectile.getY());
+        DamageData report = new DamageData();
+        report.setX(r.getX());
+        report.setY(r.getY());
+        report.setShooted(r.getDamage());
+        coordinator.damageReport(report, wrapper.playgroundId);
+        return r;
     }
 
 
     @Override
+    @PostMapping("init")
     public ActionResult initPlayer(List<CellModel> cells) {
+
+        this.cellsService.initCells(cells);
 
         return new ActionResult();
     }
 
     @Override
+    @PostMapping("run")
     public ActionResult run() {
         attackService.attackEnemy();
         return new ActionResult();

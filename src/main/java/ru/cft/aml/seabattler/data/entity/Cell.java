@@ -16,7 +16,7 @@ public class Cell {
 
     private Integer y;
 
-    private Boolean notEmpty;
+    private Boolean self;
 
     private Boolean damaged;
 
@@ -47,11 +47,19 @@ public class Cell {
         this.y = y;
     }
 
-    public Boolean getNotEmpty() {
-        return notEmpty;
+    public Boolean getSelf() {
+        return self;
     }
 
-    public void setNotEmpty(Boolean notEmpty) {
-        this.notEmpty = notEmpty;
+    public void setSelf(Boolean self) {
+        this.self = self;
+    }
+
+    public Boolean getDamaged() {
+        return damaged;
+    }
+
+    public void setDamaged(Boolean damaged) {
+        this.damaged = damaged;
     }
 }

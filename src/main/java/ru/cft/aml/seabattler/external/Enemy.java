@@ -1,10 +1,16 @@
 package ru.cft.aml.seabattler.external;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import ru.cft.aml.seabattler.controller.BattlerController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import ru.cft.aml.seabattler.model.AttackResult;
+import ru.cft.aml.seabattler.model.Projectile;
 
 
 @FeignClient(name = "enemy")
-public interface Enemy// extends BattlerController
-{
+@RequestMapping("/api")
+public interface Enemy {
+
+    @PostMapping(value = "/fire", consumes = "application/json")
+    AttackResult fire(Projectile projectile);
 }

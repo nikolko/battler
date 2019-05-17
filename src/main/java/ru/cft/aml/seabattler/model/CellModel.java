@@ -11,6 +11,8 @@ public class CellModel {
         this.y = y;
     }
 
+    private Boolean isOur;
+
     public CellModel() {
     }
 

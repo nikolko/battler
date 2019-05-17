@@ -1,5 +1,5 @@
 app:
-  enemy-url: http://localhost:8080
+  enemy-url: http://localhost:7414
   coordinator-url: http://localhost:8081
   team-name: Лоси
   playground-id: 0
