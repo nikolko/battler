@@ -32,15 +32,5 @@ public class AttackServiceImpl implements AttackService {
 
         // TODO: Implement here
 
-        Random random = new Random();
-        Integer x = random.ints(min,(max+1)).findFirst().getAsInt();
-        Integer y =  random.ints(min,(max+1)).findFirst().getAsInt();
-
-
-        Projectile p = new Projectile();
-        p.setX(x);
-        p.setY(y);
-        AttackResult res = this.enemy.fire(p);
-        System.out.println("DAMAGE is = " + res);
     }
 }
