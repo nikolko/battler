@@ -1,7 +1,7 @@
 app:
   enemy-url: http://localhost:7414
   coordinator-url: http://localhost:8081
-  team-name: Единороги
+  team-name: Очень решительные слоны с синей спиной
   playground-id: 1
   self-addr: http://localhost:8080
 

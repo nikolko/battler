@@ -29,6 +29,9 @@ public class AttackServiceImpl implements AttackService {
 
     @Override
     public void attackEnemy() {
+
+        // TODO: Implement here
+
         Random random = new Random();
         Integer x = random.ints(min,(max+1)).findFirst().getAsInt();
         Integer y =  random.ints(min,(max+1)).findFirst().getAsInt();
