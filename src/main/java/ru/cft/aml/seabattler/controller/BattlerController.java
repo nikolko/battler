@@ -15,7 +15,7 @@ public interface BattlerController {
 
 
     @PostMapping("fire")
-    AttackResult fire(Projectile projectile);
+    AttackResult fire(@RequestBody Projectile projectile);
 
 
     @PostMapping("init")

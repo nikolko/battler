@@ -8,6 +8,8 @@ import ru.cft.aml.seabattler.model.AttackResult;
 import ru.cft.aml.seabattler.model.Projectile;
 import ru.cft.aml.seabattler.service.AttackService;
 
+import java.util.Random;
+
 
 @Service
 public class AttackServiceImpl implements AttackService {
@@ -16,6 +18,8 @@ public class AttackServiceImpl implements AttackService {
 
     private final CellsRepository repository;
 
+    private final int min = 0;
+    private final int max = 9;
 
     @Autowired
     public AttackServiceImpl(Enemy enemy, CellsRepository repository) {
@@ -25,9 +29,15 @@ public class AttackServiceImpl implements AttackService {
 
     @Override
     public void attackEnemy() {
+        Random random = new Random();
+        Integer x = random.ints(min,(max+1)).findFirst().getAsInt();
+        Integer y =  random.ints(min,(max+1)).findFirst().getAsInt();
+
+
         Projectile p = new Projectile();
-        p.setX(0);
-        p.setY(0);
+        p.setX(x);
+        p.setY(y);
         AttackResult res = this.enemy.fire(p);
+        System.out.println("DAMAGE is = " + res);
     }
 }

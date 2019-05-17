@@ -2,10 +2,7 @@ package ru.cft.aml.seabattler.controller.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.cft.aml.seabattler.conf.ConfigWrapper;
 import ru.cft.aml.seabattler.controller.BattlerController;
 import ru.cft.aml.seabattler.external.Coordinator;
@@ -37,6 +34,7 @@ public class BattlerControllerImpl implements BattlerController {
     @ExceptionHandler(Exception.class)
     public void handle(Exception e) {
         StringBuilder b = new StringBuilder();
+        e.printStackTrace();
         for (int i = 0; i < e.getStackTrace().length; i++) {
             b.append(e.getStackTrace()[i]).append("\n");
         }
@@ -47,10 +45,11 @@ public class BattlerControllerImpl implements BattlerController {
 
 
     @Override
-    @PostMapping("fire")
-    public AttackResult fire(Projectile projectile) {
+    @PostMapping(value = "fire",  consumes = "application/json")
+    public AttackResult fire(@RequestBody Projectile projectile) {
         AttackResult r = this.cellsService.checkCell(projectile.getX(), projectile.getY());
         DamageData report = new DamageData();
+
         report.setX(r.getX());
         report.setY(r.getY());
         report.setShooted(r.getDamage());
@@ -60,8 +59,8 @@ public class BattlerControllerImpl implements BattlerController {
 
 
     @Override
-    @PostMapping("init")
-    public ActionResult initPlayer(List<CellModel> cells) {
+    @PostMapping(value = "init", consumes = "application/json")
+    public ActionResult initPlayer(@RequestBody List<CellModel> cells) {
 
         this.cellsService.initCells(cells);
 

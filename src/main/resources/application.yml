@@ -1,8 +1,8 @@
 app:
   enemy-url: http://localhost:7414
   coordinator-url: http://localhost:8081
-  team-name: Лоси
-  playground-id: 0
+  team-name: Единороги
+  playground-id: 1
   self-addr: http://localhost:8080
 
 spring:

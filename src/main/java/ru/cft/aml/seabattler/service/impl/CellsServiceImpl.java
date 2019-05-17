@@ -32,12 +32,14 @@ public class CellsServiceImpl implements CellsService {
 
         if (opt.isPresent()) {
             Cell c = opt.get();
-            if (c.getDamaged()) {
-                r.setDamage(false);
-            } else {
-                r.setDamage(true);
-                c.setDamaged(true);
-                repository.save(c);
+            if (c != null) {
+                if (c.getDamaged()) {
+                    r.setDamage(false);
+                } else {
+                    r.setDamage(true);
+                    c.setDamaged(true);
+                    repository.save(c);
+                }
             }
         } else {
             r.setDamage(false);
@@ -53,6 +55,7 @@ public class CellsServiceImpl implements CellsService {
                 v -> {
                     Cell c = new Cell();
                     c.setSelf(true);
+                    c.setDamaged(false);
                     c.setX(v.getX());
                     c.setY(v.getY());
                     return c;
@@ -63,6 +66,7 @@ public class CellsServiceImpl implements CellsService {
             for (int j = 0; j < 10 ; j++) {
                 Cell c = new Cell();
                 c.setSelf(false);
+                c.setDamaged(false);
                 c.setY(j);
                 c.setX(i);
                 repository.save(c);
